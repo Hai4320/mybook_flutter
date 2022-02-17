@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mybook_flutter/src/providers/theme_provider.dart';
 import 'package:mybook_flutter/src/ui/pages/home_page.dart';
+import 'package:mybook_flutter/src/ui/pages/login_page.dart';
 import 'package:mybook_flutter/src/ui/pages/start_page.dart';
 import 'package:mybook_flutter/src/ui/themes/themes.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: AppThemes.lightMode,
       darkTheme: AppThemes.darkMode,
       themeMode: themeMode.getThemeMode,
-      home: const StartPage(),
+      home: const LoginPage(),
     );
     }
   );
