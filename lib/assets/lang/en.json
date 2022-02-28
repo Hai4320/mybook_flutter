@@ -1,0 +1,11 @@
+{
+    "app_name": "Mybooks",
+    "Login":"Login",
+    "LOGIN": "LOGIN",
+    "Register": "Register",
+    "REGISTER": "Sign up",
+    "Wellcome": "Wellcome",
+    "forgot_password": "Forgot you password!",
+    "have_account": "Already have an account!",
+    "SUMMIT": "SUMMIT"
+}

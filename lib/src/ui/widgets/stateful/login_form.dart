@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/app_localization.dart';
+import '../../../data/assets.dart';
+import '../../themes/colors.dart';
+
 class LoginForm extends StatefulWidget {
   const LoginForm({ Key? key }) : super(key: key);
 
@@ -19,9 +23,9 @@ class _LoginFormState extends State<LoginForm> {
           Container(
             alignment: Alignment.center,
             height: 50,
-            child: const Text(
-              "Login",
-              style: TextStyle(
+            child: Text(
+              AppLocalizations.of(context).translate('Login'),
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
               ),
@@ -37,6 +41,7 @@ class _LoginFormState extends State<LoginForm> {
           Container(
             margin: const EdgeInsets.only(top: 50),
             child: TextFormField(
+              
               decoration: const InputDecoration(
                 hintText: "Email",
                 labelText: "Email", 
@@ -47,6 +52,7 @@ class _LoginFormState extends State<LoginForm> {
           Container(
             margin: const EdgeInsets.only(top: 30),
             child: TextFormField(
+              obscureText: true,
               decoration: const InputDecoration(
                 hintText: "Password",
                 labelText: "Password", 
@@ -62,11 +68,82 @@ class _LoginFormState extends State<LoginForm> {
               child: Container(
                 alignment: Alignment.center,
                 width: widthOfForm*0.8,
-                child: Text("LOGIN")
+                child: Text(AppLocalizations.of(context).translate('LOGIN'),)
                 )
             ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top:10),
+            alignment: Alignment.center,
+            child: Text(
+              AppLocalizations.of(context).translate('forgot_password'),
+              style: TextStyle(
+                color: AppColors.blue
+              ),
+              ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top:10),
+            alignment: Alignment.center,
+            child: Divider(
+              color: Colors.black54,
+              height: 4,
+              indent: widthOfForm*0.2,
+              endIndent: widthOfForm*0.2,
+              thickness: 1,
+          ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                child: TextButton(
+                  onPressed: (){},
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      boxShadow: const [//BoxShadow
+                              BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(0.0, 0.0),
+                                blurRadius: 3.0,
+                                blurStyle: BlurStyle.outer,
+                                spreadRadius: 3.0,
+                              ), //BoxShadow
+                            ],
+                    ),
+                    child: Image.asset(AppIcons.ic_google)
+                    ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(10),
+                child: TextButton(
+                  onPressed: (){},
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      boxShadow: const [//BoxShadow
+                              BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(0.0, 0.0),
+                                blurRadius: 3.0,
+                                blurStyle: BlurStyle.outer,
+                                spreadRadius: 3.0,
+                              ), //BoxShadow
+                            ],
+                    ),
+                    child: Image.asset(AppIcons.ic_facebook)
+                    ),
+                ),
+              )
+            ],
           )
-
         ],
         ),
     );
