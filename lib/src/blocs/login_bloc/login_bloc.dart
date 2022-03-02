@@ -2,7 +2,7 @@ import 'package:mybook_flutter/src/blocs/login_bloc/login_event.dart';
 import 'package:mybook_flutter/src/blocs/login_bloc/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../models/user_model.dart';
+import '../../data/validator.dart';
 import '../../resources/responsitory/user_repo.dart';
 import '../auth_bloc/auth_bloc.dart';
 import '../auth_bloc/auth_event.dart';
@@ -15,6 +15,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     required this.authBloc,
   }) : super(LoginInitState()) {
     on<LoginSubmited>(_onLoginSummited);
+    on<LoginFormChanged>(_onLoginFormChanged);
   }
 
   void _onLoginSummited(event, Emitter<LoginState> emit) async {
@@ -24,18 +25,36 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         event.email,
         event.password,
       );
-      print(data);
       if (data["statusCode"] == 200) {
+        emit(LoginSuccessState());
+        await Future<void>.delayed(const Duration(milliseconds: 500));
         authBloc.add(LoggedIn(
             statusCode: data["statusCode"],
             message: data["message"],
             user: data["user"]));
-        emit(LoginInitState());
       } else {
         emit(LoginFailureState(error: data["message"]));
       }
     } catch (error) {
       emit(LoginFailureState(error: error.toString()));
     }
+  }
+
+  void _onLoginFormChanged(event, Emitter<LoginState> emit) async {
+    if (state is LoginLoadingState) return;
+    bool invalidEmail = false;
+    bool invalidPassword = false;
+    if (!Validation.isValidEmail(event.email)) invalidEmail = true;
+    if (!Validation.isValidPassword(event.password)) invalidPassword = true;
+    if (invalidEmail || invalidPassword) {
+      emit(LoginInvalidState(
+          isInvalidEmail: invalidEmail, 
+          isInvalidPassword: invalidPassword
+        )
+      );
+    } else {
+      emit(LoginInitState());
+    }
+    
   }
 }

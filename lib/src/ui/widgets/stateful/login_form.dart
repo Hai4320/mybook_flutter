@@ -34,8 +34,18 @@ class _LoginFormState extends State<LoginForm> {
         listener: (context, state) {
           if (state is LoginFailureState) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text('${state.error}'),
+              content: Text(state.error),
               backgroundColor: Colors.red,
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.only(bottom: size.height-80),
+            ));
+          }
+          if (state is LoginSuccessState) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: const Text('Login successfully !'),
+              backgroundColor: Colors.green,
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.only(bottom: size.height-80),
             ));
           }
         },
@@ -48,7 +58,6 @@ class _LoginFormState extends State<LoginForm> {
                 password: _passwordController.text,
               ));
             }
-
             return Padding(
               padding: const EdgeInsets.all(20),
               child: ListView(
@@ -75,27 +84,39 @@ class _LoginFormState extends State<LoginForm> {
                       margin: const EdgeInsets.only(top: 50),
                       child: TextFormField(
                         controller: _emailController,
-                        decoration: const InputDecoration(
+                        enabled: state is! LoginLoadingState,
+                        onChanged: (value)=> BlocProvider.of<LoginBloc>(context).add(LoginFormChanged(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        )),
+                        decoration: InputDecoration(
+                          errorText: (state is LoginInvalidState&&state.isInvalidEmail)? "Email is invalid" :null,
                             hintText: "Email",
                             labelText: "Email",
-                            border: OutlineInputBorder()),
+                            border: const OutlineInputBorder()),
                       )),
                   Container(
                       margin: const EdgeInsets.only(top: 30),
                       child: TextFormField(
                         controller: _passwordController,
                         obscureText: true,
-                        decoration: const InputDecoration(
+                        enabled: state is! LoginLoadingState,
+                        onChanged: (value)=> BlocProvider.of<LoginBloc>(context).add(LoginFormChanged(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        )),
+                        decoration: InputDecoration(
+                            errorText: (state is LoginInvalidState&&state.isInvalidPassword)? "Password too short": null,
                             hintText: "Password",
                             labelText: "Password",
-                            border: OutlineInputBorder()),
+                            border: const OutlineInputBorder()),
                       )),
                   Container(
                     margin: const EdgeInsets.only(top: 20),
                     alignment: Alignment.center,
                     child: ElevatedButton(
 
-                        onPressed: state is! LoginLoadingState
+                        onPressed: (state is! LoginLoadingState)
                             ? handleButtonPress
                             : null,
                         child: Container(

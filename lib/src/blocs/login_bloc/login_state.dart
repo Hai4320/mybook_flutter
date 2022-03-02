@@ -1,6 +1,8 @@
 
 import 'package:equatable/equatable.dart';
 
+import '../../data/validator.dart';
+
 
 abstract class LoginState extends Equatable{
   const LoginState();
@@ -11,7 +13,18 @@ abstract class LoginState extends Equatable{
 class LoginInitState extends LoginState{
   LoginInitState();
 }
+class LoginInvalidState extends LoginState {
+  final bool isInvalidEmail;
+  final bool isInvalidPassword;
+  const  LoginInvalidState({required this.isInvalidEmail, required this.isInvalidPassword});
+
+   @override
+  List<Object> get props => [isInvalidEmail, isInvalidPassword];
+
+
+}
 class LoginLoadingState extends LoginState {}
+class LoginSuccessState extends LoginState {}
 
 class LoginFailureState extends LoginState {
   final String error;
