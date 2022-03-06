@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/app_localization.dart';
-import '../../../data/assets.dart';
+import '../../../constants/app_localization.dart';
+import '../../../constants/assets.dart';
 import '../../themes/colors.dart';
 
 class RegisterForm extends StatefulWidget {

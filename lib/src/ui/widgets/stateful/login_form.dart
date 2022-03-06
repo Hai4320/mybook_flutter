@@ -5,8 +5,8 @@ import '../../../blocs/auth_bloc/auth_bloc.dart';
 import '../../../blocs/login_bloc/login_bloc.dart';
 import '../../../blocs/login_bloc/login_event.dart';
 import '../../../blocs/login_bloc/login_state.dart';
-import '../../../data/app_localization.dart';
-import '../../../data/assets.dart';
+import '../../../constants/app_localization.dart';
+import '../../../constants/assets.dart';
 import '../../../resources/responsitory/user_repo.dart';
 import '../../themes/colors.dart';
 
@@ -31,7 +31,7 @@ class _LoginFormState extends State<LoginForm> {
           authBloc: BlocProvider.of<AuthBloc>(context),
           userRepository: userRepository),
       child: BlocListener<LoginBloc, LoginState>(
-        listener: (context, state) {
+        listener: (context, state) async{
           if (state is LoginFailureState) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(state.error),
@@ -47,6 +47,8 @@ class _LoginFormState extends State<LoginForm> {
               behavior: SnackBarBehavior.floating,
               margin: EdgeInsets.only(bottom: size.height-80),
             ));
+            await Future<void>.delayed(const Duration(milliseconds: 500));
+            Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
           }
         },
         child: BlocBuilder<LoginBloc, LoginState>(

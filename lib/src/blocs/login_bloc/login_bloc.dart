@@ -2,7 +2,7 @@ import 'package:mybook_flutter/src/blocs/login_bloc/login_event.dart';
 import 'package:mybook_flutter/src/blocs/login_bloc/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/validator.dart';
+import '../../constants/validator.dart';
 import '../../resources/responsitory/user_repo.dart';
 import '../auth_bloc/auth_bloc.dart';
 import '../auth_bloc/auth_event.dart';
@@ -26,12 +26,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         event.password,
       );
       if (data["statusCode"] == 200) {
-        emit(LoginSuccessState());
-        await Future<void>.delayed(const Duration(milliseconds: 500));
         authBloc.add(LoggedIn(
             statusCode: data["statusCode"],
             message: data["message"],
             user: data["user"]));
+        await Future<void>.delayed(const Duration(milliseconds: 500));
+        emit(LoginSuccessState());
       } else {
         emit(LoginFailureState(error: data["message"]));
       }

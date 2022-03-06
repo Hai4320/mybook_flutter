@@ -1,8 +1,9 @@
 
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:http/http.dart' as http;
+import "package:shared_preferences/shared_preferences.dart";
+
 import 'package:mybook_flutter/src/resources/service/api.dart';
 
 import '../../models/user_model.dart';
@@ -46,12 +47,24 @@ class UserRepository{
 
 
   // data from shared_preferences
-  bool isLogined() => false;
+  Future<bool> isLogined() async{
+    final prefs = await SharedPreferences.getInstance();
+    final bool? data = prefs.getBool('isLogined');
+    return data ?? false;
+  }
 
   Future<void> setLoginData(bool isLogined, UserModel user) async {
-    return;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool("isLogined", isLogined);
+    await prefs.setString("userID", user.id);
+    await prefs.setString("userName", user.name);
+    await prefs.setString("userEmail", user.email);
+    await prefs.setString("userAvatar", user.avatar);
+    await prefs.setString("userRole", user.role);
   }
   Future<void> deleteLoginData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool("isLogined", false);
     return;
   }
 }

@@ -1,7 +1,7 @@
 
 import 'package:equatable/equatable.dart';
 
-import '../../data/validator.dart';
+import '../../constants/validator.dart';
 
 
 abstract class LoginState extends Equatable{

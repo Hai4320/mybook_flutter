@@ -7,18 +7,18 @@ import 'package:phlox_animations/phlox_animations.dart';
 import '../../blocs/auth_bloc/auth_bloc.dart';
 import '../../blocs/auth_bloc/auth_event.dart';
 import '../../blocs/auth_bloc/auth_state.dart';
-import '../../data/app_localization.dart';
+import '../../constants/app_localization.dart';
 
 import '../../resources/responsitory/user_repo.dart';
 import '../widgets/stateful/register_form.dart';
 
-class AuthPage extends StatefulWidget {
-  const AuthPage({Key? key}) : super(key: key);
+class LoginSignupPage extends StatefulWidget {
+  const LoginSignupPage({Key? key}) : super(key: key);
   @override
-  _AuthPageState createState() => _AuthPageState();
+  _LoginSignupPageState createState() => _LoginSignupPageState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _LoginSignupPageState extends State<LoginSignupPage> {
   int _tabindex = 0;
   final userRepository = UserRepository();
   @override
