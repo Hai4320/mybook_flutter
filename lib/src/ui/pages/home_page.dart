@@ -12,7 +12,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: Text("Home")),
       body: BlocListener<BookBloc, BookState>(
         listener: (context, state) {
           if (state is BookFailureState) {
