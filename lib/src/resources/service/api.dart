@@ -5,4 +5,5 @@ class AppApis{
 
 
 static String getBook_API = API + "/books";
+static String getBookHistory_API = API +"/books/getBookHistorys";
 }

@@ -96,7 +96,7 @@ class _MainPageState extends State<MainPage> {
   }
   _renderPage(){
     switch (navbarIndex){
-      case 0: return const HomePage();
+      case 0: return HomePage();
       case 1: return const SearchPage();
       case 2: return const UserPage();
     }

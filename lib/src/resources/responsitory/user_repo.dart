@@ -52,7 +52,11 @@ class UserRepository{
     final bool? data = prefs.getBool('isLogined');
     return data ?? false;
   }
-
+  Future<String> getUserID() async{
+    final prefs = await SharedPreferences.getInstance();
+    final String? data = prefs.getString('userID');
+    return data?? "";
+  }
   Future<void> setLoginData(bool isLogined, UserModel user) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool("isLogined", isLogined);

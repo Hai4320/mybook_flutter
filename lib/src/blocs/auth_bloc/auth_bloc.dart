@@ -28,7 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   void _onLoggedIn(event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     await userRepository.setLoginData(true,event.user);
-    var x = await userRepository.isLogined();
+    await userRepository.isLogined();
     emit(AuthAuthenticated());
   }
 

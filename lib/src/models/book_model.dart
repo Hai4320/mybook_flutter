@@ -1,4 +1,8 @@
-List TypeBook = ["NOVEL","SELF HELP","CHILDREN'S BOOK","WORK STYLE","SCIENCE","OTHERS"];
+import 'package:mybook_flutter/src/constants/firebase_data.dart';
+
+List<String> typeBook = ["NOVEL","SELF HELP","CHILDREN'S BOOK","WORK STYLE","SCIENCE","OTHERS"];
+List<String> typeTab = ["ALL","NOVEL","SELF HELP","CHILDREN'S BOOK","WORK STYLE","SCIENCE","OTHERS"];
+List<String> typeSort = ["None","Name A-Z", "Name Z-A", "View increase", "View decrease"];
 class BookModel{
   String id;
   String title;
@@ -12,6 +16,11 @@ class BookModel{
   String pdf;
   List<dynamic> audio;
   String imageUrl="";
+  int view = 0;
+  int like = 0;
+  bool isSaved = false;
+  bool isViewed = false;
+  bool isLiked = false;
   
   BookModel({
     required this.id, 
@@ -27,8 +36,9 @@ class BookModel{
     required this.audio
   });
 
-  Future<String> loadImageUrl() async {
-    return "";
+  Future<void> loadImageUrl() async {
+    if (image=="") return;
+    imageUrl = await FirebaseData.getUrl(image);
   }
   Future<String> loadAudioUrl(int index) async {
     return "";
@@ -59,7 +69,23 @@ class BookData{
   BookModel? findByID(String id){
     return null;
   } 
-  List<BookModel> findByType(String type){
-    return [];
+  List<BookModel> findByType(int type){
+    if (type<0||type>=typeTab.length) return [];
+    if (type == 0) return books; 
+    String typeName = typeTab[type];
+    return books.where((e) => e.type==typeName).toList();
+  }
+  List<BookModel> findByTypeAndSort(int type,int sort){
+    
+    var result =  findByType(type);
+    switch (sort){
+       case 0: break;
+       case 1: result.sort((a,b)=> (a.title.compareTo(b.title))); break;
+       case 2: result.sort((a,b)=> (b.title.compareTo(a.title))); break;
+       case 3: result.sort((a,b)=> (a.view.compareTo(b.view))); break;
+       case 4: result.sort((a,b)=> (b.view.compareTo(a.view))); break;
+       default: break;
+    }
+    return result;
   }
 } 

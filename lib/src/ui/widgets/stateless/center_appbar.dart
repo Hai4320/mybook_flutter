@@ -21,7 +21,7 @@ class CenterAppBar extends StatelessWidget {
         iconTheme: IconThemeData(color: AppColors.primary),
         actions: [
           IconButton(
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.notifications_none),
             onPressed: (){},
             )
         ],

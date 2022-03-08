@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mybook_flutter/src/constants/app_localization.dart';
 import 'package:mybook_flutter/src/providers/theme_provider.dart';
@@ -8,7 +10,10 @@ import 'package:mybook_flutter/src/ui/pages/start_page.dart';
 import 'package:mybook_flutter/src/ui/themes/themes.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await FirebaseAuth.instance.signInAnonymously();
   runApp(const MyApp());
 }
 
