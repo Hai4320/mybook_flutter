@@ -5,8 +5,7 @@ import 'package:mybook_flutter/src/ui/widgets/stateful/login_form.dart';
 import 'package:mybook_flutter/src/ui/widgets/stateless/logo.dart';
 import 'package:phlox_animations/phlox_animations.dart';
 import '../../blocs/auth_bloc/auth_bloc.dart';
-import '../../blocs/auth_bloc/auth_event.dart';
-import '../../blocs/auth_bloc/auth_state.dart';
+
 import '../../constants/app_localization.dart';
 
 import '../../resources/responsitory/user_repo.dart';

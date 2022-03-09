@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../constants/validator.dart';
 import '../../resources/responsitory/user_repo.dart';
 import '../auth_bloc/auth_bloc.dart';
-import '../auth_bloc/auth_event.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserRepository userRepository;

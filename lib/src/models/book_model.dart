@@ -75,6 +75,9 @@ class BookData{
     String typeName = typeTab[type];
     return books.where((e) => e.type==typeName).toList();
   }
+  List<BookModel> searchBooks(String query){
+    return books.where((e) => e.title.toLowerCase().contains(query.toLowerCase())).toList();
+  }
   List<BookModel> findByTypeAndSort(int type,int sort){
     
     var result =  findByType(type);

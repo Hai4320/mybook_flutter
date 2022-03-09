@@ -7,8 +7,7 @@ import 'package:mybook_flutter/src/ui/themes/colors.dart';
 import 'package:mybook_flutter/src/ui/themes/styles.dart';
 
 import '../../blocs/auth_bloc/auth_bloc.dart';
-import '../../blocs/auth_bloc/auth_event.dart';
-import '../../blocs/auth_bloc/auth_state.dart';
+
 import '../../resources/responsitory/user_repo.dart';
 
 class StartPage extends StatefulWidget {

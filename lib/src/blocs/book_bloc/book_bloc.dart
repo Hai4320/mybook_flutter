@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/book_model.dart';
 import '../../resources/responsitory/book_repo.dart';
-import 'book_event.dart';
-import 'book_state.dart';
+part 'book_event.dart';
+part 'book_state.dart';
 
 class BookBloc extends Bloc<BookEvent, BookState>{
   BookRepository bookRepository;

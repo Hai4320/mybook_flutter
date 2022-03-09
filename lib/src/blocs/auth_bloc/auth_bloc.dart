@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:mybook_flutter/src/models/user_model.dart';
 
 import '../../resources/responsitory/user_repo.dart';
-import 'auth_event.dart';
-import 'auth_state.dart';
+import 'package:equatable/equatable.dart';
+part 'auth_event.dart';
+part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserRepository userRepository;

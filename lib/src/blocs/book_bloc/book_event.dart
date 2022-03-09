@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'book_bloc.dart';
 
 abstract class BookEvent extends Equatable{
   const BookEvent();

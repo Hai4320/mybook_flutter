@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mybook_flutter/src/blocs/book_bloc/book_event.dart';
+import 'package:mybook_flutter/src/blocs/home_bloc/home_bloc.dart';
+import 'package:mybook_flutter/src/blocs/search_bloc/search_bloc.dart';
 import 'package:mybook_flutter/src/resources/responsitory/book_repo.dart';
 import 'package:mybook_flutter/src/ui/pages/home_page.dart';
-import 'package:mybook_flutter/src/ui/pages/seach_page.dart';
+import 'package:mybook_flutter/src/ui/pages/search_page.dart';
 import 'package:mybook_flutter/src/ui/pages/user_page.dart';
 import 'package:mybook_flutter/src/ui/widgets/stateful/drawer_nav.dart';
 import 'package:mybook_flutter/src/ui/widgets/stateless/center_appbar.dart';
@@ -57,6 +58,12 @@ class _MainPageState extends State<MainPage> {
             BlocProvider(
               create: (context) => BookBloc(bookRepository: BookRepository())
                 ..add(FetchBookEvent()),
+            ),
+            BlocProvider(
+              create: (context) => SearchBloc(moveup: false, query: ""),
+            ),
+            BlocProvider(
+              create: (context) => HomeBloc(type: 0, sort: 0),
             ),
           ],
           child: _renderPage(),

@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:mybook_flutter/src/models/book_model.dart';
+part of 'book_bloc.dart';
 
 abstract class BookState extends Equatable{
   const BookState();
