@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mybook_flutter/src/blocs/auth_bloc/auth_bloc.dart';
 import 'package:mybook_flutter/src/blocs/home_bloc/home_bloc.dart';
 import 'package:mybook_flutter/src/blocs/search_bloc/search_bloc.dart';
-import 'package:mybook_flutter/src/resources/responsitory/book_repo.dart';
+import 'package:mybook_flutter/src/blocs/user_bloc/user_bloc.dart';
+import 'package:mybook_flutter/src/models/user_model.dart';
 import 'package:mybook_flutter/src/ui/pages/home_page.dart';
 import 'package:mybook_flutter/src/ui/pages/search_page.dart';
 import 'package:mybook_flutter/src/ui/pages/user_page.dart';
@@ -23,6 +25,12 @@ class _MainPageState extends State<MainPage> {
   int tabNumber = 3;
   double navHeight = 70;
   int navbarIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<BookBloc>(context).add(FetchBookEvent());
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -56,14 +64,14 @@ class _MainPageState extends State<MainPage> {
         body: MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => BookBloc(bookRepository: BookRepository())
-                ..add(FetchBookEvent()),
-            ),
-            BlocProvider(
               create: (context) => SearchBloc(moveup: false, query: ""),
             ),
             BlocProvider(
               create: (context) => HomeBloc(type: 0, sort: 0),
+            ),
+            BlocProvider(
+              create: (context) => UserBloc(user: UserModel.createUndefined())
+                                    ..add(UserInitEvent(userRepository: BlocProvider.of<AuthBloc>(context).userRepository)),
             ),
           ],
           child: _renderPage(),

@@ -78,6 +78,12 @@ class BookData{
   List<BookModel> searchBooks(String query){
     return books.where((e) => e.title.toLowerCase().contains(query.toLowerCase())).toList();
   }
+   List<BookModel> likedBooks(){
+    return books.where((e) => e.isLiked).toList();
+  }
+   List<BookModel> savedBooks(){
+    return books.where((e) => e.isSaved).toList();
+  }
   List<BookModel> findByTypeAndSort(int type,int sort){
     
     var result =  findByType(type);

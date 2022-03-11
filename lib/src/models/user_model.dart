@@ -1,9 +1,12 @@
+import 'package:mybook_flutter/src/constants/firebase_data.dart';
+
 class UserModel{
   late String id;
   late String email;
   late String name;
   late String avatar;
   late String role;
+  String avatarURL ="";
 
   UserModel({required this.id, required this.email, required this.name, required this.avatar, required this.role});
 
@@ -19,7 +22,10 @@ class UserModel{
     };
     return map;
   }
-  
+  Future<void> getAvatarUrl() async {
+    if (avatar=="") return;
+    avatarURL = await FirebaseData.getUrl(avatar);
+  }
   factory UserModel.fromJSON(Map<String, dynamic> json) => UserModel(
     id: json["id"],
     email: json["email"],

@@ -6,4 +6,5 @@ class AppIcons{
 class AppImages{
   static const String imagePath = "lib/assets/images/";
   static const String img_default = imagePath + "img_default_book.jpg";
+  static const String img_avatar = imagePath + "avatar.png";
 }

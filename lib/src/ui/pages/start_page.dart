@@ -19,112 +19,108 @@ class StartPage extends StatefulWidget {
 
 class _StartPageState extends State<StartPage> {
   final String _welcome = "Welcome to Mybooks";
-  final UserRepository userRepository = UserRepository();
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return BlocProvider(
-      create: (context) => AuthBloc(userRepository: userRepository)..add(AppStarted()),
-      child: BlocListener<AuthBloc, AuthState>(
-        listener: (context, state) {
-          if (state is AuthAuthenticated){
-            Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
-          }
-        },
-        child: Scaffold(
-          extendBodyBehindAppBar: true,
-          backgroundColor: AppColors.secondary,
-          body: SafeArea(
-              child: Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                    AppColors.secondary,
-                    AppColors.primary,
-                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-                  child: Center(
-                    child: SizedBox(
-                      height: size.height * 0.7,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(_welcome,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w600,
-                                )),
-                            SizedBox(
-                              height: size.height * 0.15,
-                            ),
-                            _buildButtonWithIcon(
-                                "Login with your account",
-                                size.width * 0.8,
-                                Colors.white,
-                                AppColors.blue,
-                                null,
-                                () => _clickLoginButton()),
-                            _buildButtonWithIcon(
-                                "Login with google",
-                                size.width * 0.8,
-                                Colors.black87,
-                                Colors.white,
-                                AppIcons.ic_google,
-                                _clickLoginButton),
-                            _buildButtonWithIcon(
-                                "Login with facebook",
-                                size.width * 0.8,
-                                Colors.black87,
-                                Colors.white,
-                                AppIcons.ic_facebook,
-                                _clickLoginButton),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 4, bottom: 4),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    width: size.width * 0.3,
-                                    child: const Divider(
-                                      color: Colors.white,
-                                      thickness: 2,
-                                    ),
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthAuthenticated){
+          Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
+        }
+      },
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        backgroundColor: AppColors.secondary,
+        body: SafeArea(
+            child: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                  AppColors.secondary,
+                  AppColors.primary,
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                child: Center(
+                  child: SizedBox(
+                    height: size.height * 0.7,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(_welcome,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w600,
+                              )),
+                          SizedBox(
+                            height: size.height * 0.15,
+                          ),
+                          _buildButtonWithIcon(
+                              "Login with your account",
+                              size.width * 0.8,
+                              Colors.white,
+                              AppColors.blue,
+                              null,
+                              () => _clickLoginButton()),
+                          _buildButtonWithIcon(
+                              "Login with google",
+                              size.width * 0.8,
+                              Colors.black87,
+                              Colors.white,
+                              AppIcons.ic_google,
+                              _clickLoginButton),
+                          _buildButtonWithIcon(
+                              "Login with facebook",
+                              size.width * 0.8,
+                              Colors.black87,
+                              Colors.white,
+                              AppIcons.ic_facebook,
+                              _clickLoginButton),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4, bottom: 4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: size.width * 0.3,
+                                  child: const Divider(
+                                    color: Colors.white,
+                                    thickness: 2,
                                   ),
-                                  const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 4, right: 4),
-                                      child: Text(
-                                        "or",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                        ),
-                                      )),
-                                  SizedBox(
-                                    width: size.width * 0.3,
-                                    child: const Divider(
-                                      color: Colors.white,
-                                      thickness: 2,
-                                    ),
+                                ),
+                                const Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 4, right: 4),
+                                    child: Text(
+                                      "or",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                    )),
+                                SizedBox(
+                                  width: size.width * 0.3,
+                                  child: const Divider(
+                                    color: Colors.white,
+                                    thickness: 2,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            _buildButtonWithIcon(
-                                "Create a new account!",
-                                size.width * 0.8,
-                                Colors.black87,
-                                Colors.white,
-                                null,
-                                _clickSignupButton)
-                          ],
-                        ),
+                          ),
+                          _buildButtonWithIcon(
+                              "Create a new account!",
+                              size.width * 0.8,
+                              Colors.black87,
+                              Colors.white,
+                              null,
+                              _clickSignupButton)
+                        ],
                       ),
                     ),
-                  ))),
-        ),
+                  ),
+                ))),
       ),
     );
   }

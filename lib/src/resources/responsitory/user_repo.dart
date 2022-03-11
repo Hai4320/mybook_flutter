@@ -57,6 +57,16 @@ class UserRepository{
     final String? data = prefs.getString('userID');
     return data?? "";
   }
+  Future<UserModel> getUserData() async{
+    final prefs = await SharedPreferences.getInstance();
+    return UserModel(
+      id: prefs.getString('userID')?? "", 
+      avatar: prefs.getString('userAvatar')?? "",
+      email: prefs.getString('userEmail')?? "",
+      name: prefs.getString('userName')?? "",
+      role: prefs.getString('userRole')?? "",
+      );
+  }
   Future<void> setLoginData(bool isLogined, UserModel user) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool("isLogined", isLogined);

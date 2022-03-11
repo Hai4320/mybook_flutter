@@ -57,6 +57,7 @@ class BookRepository {
           data[i].view = history.view;
           data[i].like = history.like;
           data[i].isLiked = userHistory == null ? false: userHistory.liked;
+          data[i].isSaved = userHistory == null ? false: userHistory.saved;
           data[i].isViewed = userHistory == null;
         }
         success = true;

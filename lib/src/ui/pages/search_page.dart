@@ -5,7 +5,9 @@ import 'package:mybook_flutter/src/blocs/search_bloc/search_bloc.dart';
 import 'package:mybook_flutter/src/constants/assets.dart';
 import 'package:mybook_flutter/src/models/book_model.dart';
 import 'package:mybook_flutter/src/ui/themes/colors.dart';
+import 'package:mybook_flutter/src/ui/widgets/stateless/book_card.dart';
 import 'package:phlox_animations/phlox_animations.dart';
+import 'package:mybook_flutter/src/ui/widgets/stateless/page_title.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -29,7 +31,13 @@ class _SearchPageState extends State<SearchPage> {
         child: Stack(
           children: [
             !moveup
-                ? Container()
+                ? Positioned(
+                    top: size.height*0.3,
+                    child: Container(
+                      width: size.width,
+                      alignment: Alignment.center,
+                      child: const PageTitle(color: Colors.white, title: "Seach Page"),
+                  ))
                 : Positioned(
                     bottom: 20,
                     child: PhloxAnimations(
@@ -53,20 +61,7 @@ class _SearchPageState extends State<SearchPage> {
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     BookModel item = bookListSearched[index];
-                                    return FutureBuilder(
-                                      future: item.loadImageUrl(),
-                                      builder: (context,image) {
-                                        return Card(
-                                          child: ListTile(
-                                            title: Text(item.title),
-                                            subtitle: Text(item.author),
-                                            leading: item.imageUrl==""
-                                            ? Image.asset(AppImages.img_default)
-                                            : Image.network(item.imageUrl),
-                                          ),
-                                        );
-                                      }
-                                    );
+                                    return BookCard(item: item);
                                   })),
                     ),
                   ),
