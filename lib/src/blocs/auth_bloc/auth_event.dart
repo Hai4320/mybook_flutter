@@ -11,11 +11,11 @@ abstract class AuthEvent extends Equatable {
 class AppStarted extends AuthEvent {}
 
 class LoggedIn extends AuthEvent {
-  int statusCode; 
-  String message;
-  UserModel user;
+  final int statusCode; 
+  final String message;
+  final UserModel user;
 
-  LoggedIn({required this.statusCode,required this.message, required this.user});
+  const LoggedIn({required this.statusCode,required this.message, required this.user});
   @override
   List<Object> get props => [statusCode,message,user];
 

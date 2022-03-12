@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:mybook_flutter/src/constants/assets.dart';
 import 'package:mybook_flutter/src/models/book_model.dart';
+import 'package:mybook_flutter/src/ui/pages/book_detail_page.dart';
 import 'package:mybook_flutter/src/ui/themes/colors.dart';
 
-class BuildBookItem extends StatefulWidget {
+class BuildBookItem extends StatelessWidget {
   const BuildBookItem({Key? key, required this.book}) : super(key: key);
   final BookModel book;
-
-  @override
-  State<BuildBookItem> createState() => _BuildBookItemState();
-}
-
-class _BuildBookItemState extends State<BuildBookItem> {
   @override
   Widget build(BuildContext context) {
+    _handleOpenBook(BookModel book) async{
+      const transitionDuration = Duration(milliseconds: 500);
+      Navigator.of(context).push(
+        PageRouteBuilder(
+          transitionDuration: transitionDuration,
+          reverseTransitionDuration: transitionDuration,
+          pageBuilder: (_, animation, ___) {
+            return FadeTransition(
+              opacity: animation,
+              child: BookDetailPage(book: book),
+            );
+          },
+        ),
+      );
+    }
+
     return FutureBuilder(
-        future: widget.book.loadImageUrl(),
-        builder: (context, snapshot) {
+        future: book.loadImageUrl(),
+        builder: (context, loadImage) {
           return Container(
             height: 200,
             margin: const EdgeInsets.all(4),
@@ -36,7 +47,7 @@ class _BuildBookItemState extends State<BuildBookItem> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 InkWell(
-                  onTap: (){},
+                  onTap: () => _handleOpenBook(book),
                   child: Container(
                       height: 190,
                       width: 130,
@@ -47,11 +58,12 @@ class _BuildBookItemState extends State<BuildBookItem> {
                             width: 1,
                           ),
                           borderRadius: BorderRadius.circular(5)),
-                      child: widget.book.image == ""
+                      child: book.image == ""
                           ? Image.asset(AppImages.img_default)
-                          : (widget.book.imageUrl == "")
+                          : (book.imageUrl == "")
                               ? const Center(child: CircularProgressIndicator())
-                              : Image.network(widget.book.imageUrl, fit: BoxFit.cover)),
+                              : Image.network(book.imageUrl,
+                                  fit: BoxFit.cover)),
                 ),
                 Expanded(
                     flex: 4,
@@ -64,35 +76,28 @@ class _BuildBookItemState extends State<BuildBookItem> {
                           SizedBox(
                             height: 60,
                             child: Text(
-                              widget.book.title, 
+                              book.title,
                               maxLines: 2,
                               style: const TextStyle(
-                                fontSize: 19,
-                                fontWeight: FontWeight.w600,
-                                overflow: TextOverflow.ellipsis
-                              ),
-                              ),
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w600,
+                                  overflow: TextOverflow.ellipsis),
+                            ),
                           ),
                           SizedBox(
-                            height: 25,
-                            child: RichText(
-                              text: TextSpan(
-                                text: "By: ",
-                                style: TextStyle(
-                                  color: AppColors.black33
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: widget.book.author,
-                                    style: TextStyle(
-                                      color: AppColors.blue,
-                                      fontStyle: FontStyle.italic
-                                    )
-                                    ),
-                                ]
-                              )
-                            )
-                          ),
+                              height: 25,
+                              child: RichText(
+                                  text: TextSpan(
+                                      text: "By: ",
+                                      style:
+                                          TextStyle(color: AppColors.black33),
+                                      children: [
+                                    TextSpan(
+                                        text: book.author,
+                                        style: TextStyle(
+                                            color: AppColors.blue,
+                                            fontStyle: FontStyle.italic)),
+                                  ]))),
                           Container(
                             height: 25,
                             margin: const EdgeInsets.only(bottom: 10),
@@ -101,55 +106,44 @@ class _BuildBookItemState extends State<BuildBookItem> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.book.view.toString(),
+                                  book.view.toString(),
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: AppColors.blue,
                                   ),
                                 ),
                                 const SizedBox(width: 2),
-                                Icon(
-                                  Icons.visibility, 
-                                  color: AppColors.blue, 
-                                  size: 15
-                                ),
+                                Icon(Icons.visibility,
+                                    color: AppColors.blue, size: 15),
                                 const SizedBox(width: 12),
                                 Text(
-                                  widget.book.like.toString(),
+                                  book.like.toString(),
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: AppColors.like,
                                   ),
                                 ),
                                 const SizedBox(width: 2),
-                                Icon(
-                                  Icons.favorite, 
-                                  color: AppColors.like, 
-                                  size: 15
-                                ),
-                                
+                                Icon(Icons.favorite,
+                                    color: AppColors.like, size: 15),
                               ],
                             ),
                           ),
                           Row(
                             children: [
                               Container(
-                                height: 30,
-                                padding: const EdgeInsets.only(left: 8, right: 8),
-                                decoration: BoxDecoration(
-                                  color: AppColors.secondary,
-                                  borderRadius: BorderRadius.circular(5)
-
-                                ),
-                                child: Center(child: Text(
-                                  widget.book.status==""? "Unknown": widget.book.status,
-                                  
-                                ))
-                              ),
-
+                                  height: 30,
+                                  padding:
+                                      const EdgeInsets.only(left: 8, right: 8),
+                                  decoration: BoxDecoration(
+                                      color: AppColors.secondary,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Center(
+                                      child: Text(
+                                    book.status == "" ? "Unknown" : book.status,
+                                  ))),
                             ],
                           )
-
                         ],
                       ),
                     )),
@@ -162,7 +156,7 @@ class _BuildBookItemState extends State<BuildBookItem> {
                         ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              primary: AppColors.primary  ,
+                              primary: AppColors.primary,
                               shape: const CircleBorder(),
                               minimumSize: const Size.square(40),
                             ),

@@ -12,7 +12,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({
     required this.userRepository,
     required this.authBloc,
-  }) : super(LoginInitState()) {
+  }) : super(const LoginInitState()) {
     on<LoginSubmited>(_onLoginSummited);
     on<LoginFormChanged>(_onLoginFormChanged);
   }
@@ -52,7 +52,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         )
       );
     } else {
-      emit(LoginInitState());
+      emit(const LoginInitState());
     }
     
   }

@@ -54,7 +54,6 @@ class _LoginFormState extends State<LoginForm> {
         child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
             handleButtonPress() {
-              print(_emailController.text);
               BlocProvider.of<LoginBloc>(context).add(LoginSubmited(
                 email: _emailController.text,
                 password: _passwordController.text,

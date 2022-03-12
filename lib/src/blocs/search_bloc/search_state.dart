@@ -1,9 +1,9 @@
 part of 'search_bloc.dart';
 
 class SearchState extends Equatable {
-  bool moveup;
-  String query;
-  SearchState(this.moveup, this.query);
+  final bool moveup;
+  final String query;
+  const SearchState(this.moveup, this.query);
 
   
   @override

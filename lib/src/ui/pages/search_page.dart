@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybook_flutter/src/blocs/book_bloc/book_bloc.dart';
 import 'package:mybook_flutter/src/blocs/search_bloc/search_bloc.dart';
-import 'package:mybook_flutter/src/constants/assets.dart';
 import 'package:mybook_flutter/src/models/book_model.dart';
 import 'package:mybook_flutter/src/ui/themes/colors.dart';
 import 'package:mybook_flutter/src/ui/widgets/stateless/book_card.dart';

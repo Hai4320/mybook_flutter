@@ -1,8 +1,6 @@
 
 import 'package:equatable/equatable.dart';
 
-import '../../constants/validator.dart';
-
 
 abstract class LoginState extends Equatable{
   const LoginState();
@@ -11,7 +9,7 @@ abstract class LoginState extends Equatable{
 }
 
 class LoginInitState extends LoginState{
-  LoginInitState();
+  const LoginInitState();
 }
 class LoginInvalidState extends LoginState {
   final bool isInvalidEmail;

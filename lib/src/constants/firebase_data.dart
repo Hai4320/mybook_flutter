@@ -7,7 +7,6 @@ class FirebaseData{
       var url = await ref.getDownloadURL();
       return url;
     } catch (error){
-      print(error);
       return "";
     }
     

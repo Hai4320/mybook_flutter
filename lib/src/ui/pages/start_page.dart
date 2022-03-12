@@ -8,7 +8,6 @@ import 'package:mybook_flutter/src/ui/themes/styles.dart';
 
 import '../../blocs/auth_bloc/auth_bloc.dart';
 
-import '../../resources/responsitory/user_repo.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({Key? key}) : super(key: key);

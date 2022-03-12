@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mybook_flutter/src/blocs/auth_bloc/auth_bloc.dart';
 import 'package:mybook_flutter/src/blocs/book_bloc/book_bloc.dart';
-import 'package:mybook_flutter/src/blocs/home_bloc/home_bloc.dart';
-import 'package:mybook_flutter/src/blocs/search_bloc/search_bloc.dart';
 import 'package:mybook_flutter/src/constants/app_localization.dart';
 import 'package:mybook_flutter/src/providers/theme_provider.dart';
 import 'package:mybook_flutter/src/resources/responsitory/book_repo.dart';

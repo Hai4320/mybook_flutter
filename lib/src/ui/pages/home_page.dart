@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage>
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Sort type"),
+          title: const Text("Sort type"),
           content: Container(
             width: double.maxFinite,
             height: MediaQuery.of(context).size.height * 0.5,

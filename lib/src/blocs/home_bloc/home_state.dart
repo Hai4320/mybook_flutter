@@ -2,10 +2,10 @@
 part of 'home_bloc.dart';
 
 class HomeState extends Equatable{
-  int type;
-  int sort;
+  final int type;
+  final int sort;
 
-  HomeState(this.type, this.sort);
+  const HomeState(this.type, this.sort);
 
 
 
