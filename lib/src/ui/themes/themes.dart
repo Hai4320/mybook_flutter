@@ -9,6 +9,9 @@ class AppThemes{
   static ThemeData darkMode = ThemeData(
     brightness: Brightness.dark,
     primaryColor: Colors.orange.shade700,
-    fontFamily: "Nunito"
+    fontFamily: "Nunito",
+    backgroundColor: Colors.grey[900],
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+
   );
 }
