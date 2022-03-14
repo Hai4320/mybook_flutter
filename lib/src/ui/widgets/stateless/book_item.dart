@@ -4,6 +4,8 @@ import 'package:mybook_flutter/src/models/book_model.dart';
 import 'package:mybook_flutter/src/ui/pages/book_detail_page.dart';
 import 'package:mybook_flutter/src/ui/themes/colors.dart';
 
+import 'package:mybook_flutter/src/ui/pages/book_audio_page.dart';
+
 class BuildBookItem extends StatelessWidget {
   const BuildBookItem({Key? key, required this.book}) : super(key: key);
   final BookModel book;
@@ -24,7 +26,9 @@ class BuildBookItem extends StatelessWidget {
         ),
       );
     }
-
+    _handleOpenAudio(BookModel book){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => BookAudioPage(book: book)));
+    }
     return FutureBuilder(
         future: book.loadImageUrl(),
         builder: (context, loadImage) {
@@ -154,7 +158,7 @@ class BuildBookItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => _handleOpenBook(book),
                             style: ElevatedButton.styleFrom(
                               primary: AppColors.primary,
                               shape: const CircleBorder(),
@@ -166,7 +170,7 @@ class BuildBookItem extends StatelessWidget {
                             )),
                         const SizedBox(height: 20),
                         OutlinedButton(
-                            onPressed: () {},
+                            onPressed: () =>_handleOpenAudio(book),
                             style: ElevatedButton.styleFrom(
                               side: BorderSide(
                                   width: 2.0, color: AppColors.primary),

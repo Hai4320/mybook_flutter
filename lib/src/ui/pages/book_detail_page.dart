@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybook_flutter/src/blocs/book_bloc/book_bloc.dart';
 import 'package:mybook_flutter/src/constants/assets.dart';
 import 'package:mybook_flutter/src/models/book_model.dart';
-import 'package:mybook_flutter/src/ui/pages/book_pdf.dart';
+import 'package:mybook_flutter/src/ui/pages/book_audio_page.dart';
+import 'package:mybook_flutter/src/ui/pages/book_pdf_page.dart';
 import 'package:mybook_flutter/src/ui/themes/colors.dart';
 import 'package:mybook_flutter/src/ui/widgets/stateless/transparent_appbar.dart';
 import 'package:phlox_animations/phlox_animations.dart';
@@ -58,6 +59,9 @@ class _BookDetailPageState extends State<BookDetailPage> {
     }
     _handleOpenPdfPage(){
       Navigator.push(context, MaterialPageRoute(builder: (context) => BookPDF(pdf: book.pdf)));
+    }
+    _handleOpenAudio(){
+      Navigator.push(context, MaterialPageRoute(builder: (context) =>BookAudioPage(book: book)));
     }
     return Scaffold(
         appBar: TransparentAppBar("Book", Colors.white),
@@ -175,7 +179,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                                 SizedBox(
                                   width: size.width*0.7,
                                   child: ElevatedButton.icon(
-                                    onPressed: (){},
+                                    onPressed: _handleOpenAudio,
                                     style: ElevatedButton.styleFrom(
                                       primary: AppColors.primary
                                     ),
@@ -242,8 +246,8 @@ class _BookDetailPageState extends State<BookDetailPage> {
                           fromOpacity: 0,
                           child: Container(
                               alignment: Alignment.center,
-                              width: 190 * 1.2,
-                              height: 130 * 1.2,
+                              height: 190*0.9,
+                              width: 130*0.9,
                               child: book.imageUrl == ""
                                   ? Image.asset(AppImages.img_default,
                                       fit: BoxFit.cover)
