@@ -11,6 +11,7 @@ import 'package:mybook_flutter/src/resources/responsitory/book_repo.dart';
 import 'package:mybook_flutter/src/resources/responsitory/user_repo.dart';
 import 'package:mybook_flutter/src/ui/pages/login_signup_page.dart';
 import 'package:mybook_flutter/src/ui/pages/main_page.dart';
+import 'package:mybook_flutter/src/ui/pages/splash_page.dart';
 import 'package:mybook_flutter/src/ui/pages/start_page.dart';
 import 'package:mybook_flutter/src/ui/themes/themes.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +48,8 @@ class MyApp extends StatelessWidget {
                 darkTheme: AppThemes.darkMode,
                 themeMode: themeMode.getThemeMode,
                 routes: {
-                  '/': (context) => const StartPage(),
+                  '/': (context) => const SplashPage(),
+                  '/start': (context) => const StartPage(),
                   '/login': (context) => const LoginSignupPage(),
                   "/main": (context) => const MainPage()
                 },

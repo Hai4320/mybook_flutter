@@ -14,7 +14,7 @@ class LogoMyBooks extends StatelessWidget {
       style: TextStyle(
         color: color?? Colors.white,
         fontSize: size,
-        fontWeight: FontWeight.w600
+        fontWeight: FontWeight.bold
       ),
     );
   }
