@@ -4,6 +4,7 @@ import 'package:mybook_flutter/src/blocs/auth_bloc/auth_bloc.dart';
 import 'package:mybook_flutter/src/blocs/book_bloc/book_bloc.dart';
 import 'package:mybook_flutter/src/blocs/user_bloc/user_bloc.dart';
 import 'package:mybook_flutter/src/constants/assets.dart';
+import 'package:mybook_flutter/src/ui/pages/notification_page.dart';
 import 'package:mybook_flutter/src/ui/themes/colors.dart';
 import 'package:mybook_flutter/src/ui/widgets/stateless/book_card.dart';
 import 'package:mybook_flutter/src/ui/widgets/stateless/page_title.dart';
@@ -137,7 +138,7 @@ class _UserPageState extends State<UserPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> const NotificationPage()));},
                               child: const Icon(Icons.notifications)),
                           const SizedBox(width: 16),
                           ElevatedButton(

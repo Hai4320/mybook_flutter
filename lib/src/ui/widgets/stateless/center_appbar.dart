@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mybook_flutter/src/ui/pages/notification_page.dart';
 import 'package:mybook_flutter/src/ui/themes/colors.dart';
 
 class CenterAppBar extends StatelessWidget {
@@ -22,7 +23,7 @@ class CenterAppBar extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_none),
-            onPressed: (){},
+            onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> const NotificationPage()));},
             )
         ],
         title: ShaderMask(
