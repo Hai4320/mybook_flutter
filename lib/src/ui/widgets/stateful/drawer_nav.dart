@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mybook_flutter/src/constants/assets.dart';
 import 'package:mybook_flutter/src/models/user_model.dart';
+import 'package:mybook_flutter/src/ui/pages/about_page.dart';
+import 'package:mybook_flutter/src/ui/pages/help_page.dart';
+import 'package:mybook_flutter/src/ui/pages/setting_page.dart';
 import 'package:mybook_flutter/src/ui/themes/colors.dart';
 
 import '../../../resources/responsitory/user_repo.dart';
@@ -49,19 +52,30 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                 ],
               ),
             ),
-            _buildDrawItems("Home", Icons.home, () {}),
+            _buildDrawItems("Home", Icons.home, () {
+              Navigator.pop(context);
+            }),
             const SizedBox(
               height: 10,
             ),
-            _buildDrawItems("Setting", Icons.settings, () {}),
+            _buildDrawItems("Setting", Icons.settings, () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const SettingPage()));
+            }),
             const SizedBox(
               height: 10,
             ),
-            _buildDrawItems("About", Icons.info_outline, () {}),
+            _buildDrawItems("About", Icons.info_outline, () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AboutPage()));
+            }),
             const SizedBox(
               height: 10,
             ),
-            _buildDrawItems("Help", Icons.help_outline, () {}),
+            _buildDrawItems("Help", Icons.help_outline, () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HelpPage()));
+            }),
           ],
         ),
       ),
@@ -70,7 +84,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
 
   _buildDrawItems(String name, IconData icon, VoidCallback func) {
     return ListTile(
-        onTap: () {},
+        onTap: func,
         iconColor: Colors.white,
         leading: Icon(icon),
         title: Text(
