@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:mybook_flutter/src/resources/responsitory/book_history_model.dart';
+import 'package:mybook_flutter/src/models/book_history_model.dart';
 import 'package:mybook_flutter/src/resources/responsitory/user_repo.dart';
 
 import '../../models/book_model.dart';

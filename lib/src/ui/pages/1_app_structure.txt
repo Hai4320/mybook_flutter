@@ -1,0 +1,27 @@
+ Mybook
+    SplashScreen
+        - Authenticated
+            MainScreen
+                *Navigation
+                    HomeScreen
+                        -> Book
+                            -->BookPDF
+                            -->BookAudio => AudioPlayer
+                    SearchScreen
+                        -> Book
+                            -->BookPDF
+                            -->BookAudio => AudioPlayer
+                    UserScreen
+                        -> Notifications
+                        -> EditUser
+                        -> Logout!
+                *Drawer
+                    HomeScreen
+                    AboutScreen
+                    SettingsScreen
+                    HelpScreen
+                    
+        - Unauthenticated
+            LoginScreen -> MainScreen
+                *ForgotPassword
+            RegisterScreen
