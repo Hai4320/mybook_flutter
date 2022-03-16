@@ -14,7 +14,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   _onFetchNotification(event, Emitter<NotificationState> emit) async {
     emit(NotificationLoading());
     List<NotificationModel> result = await data.fetchNotifications();
-    if (result == [])
+    if (result.isEmpty) 
     { 
       emit(NotificationFailure());
     }

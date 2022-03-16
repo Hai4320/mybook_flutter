@@ -49,6 +49,8 @@ dependencies:
   webview_flutter: ^3.0.1
   marquee: ^2.2.1
   audioplayers: ^0.20.1
+  intl: ^0.17.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
