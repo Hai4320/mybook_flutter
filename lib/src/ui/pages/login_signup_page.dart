@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybook_flutter/src/ui/themes/colors.dart';
@@ -20,6 +22,15 @@ class LoginSignupPage extends StatefulWidget {
 class _LoginSignupPageState extends State<LoginSignupPage> {
   int _tabindex = 0;
   final userRepository = UserRepository();
+
+  void openLoginForm(){
+    _tabindex = 0; 
+    setState((){});
+  }
+  void openRegisterForm(){
+    _tabindex = 0;
+    setState((){});
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -81,8 +92,8 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                                 children: [
                                   Expanded(
                                     child: _tabindex == 0
-                                        ? const LoginForm()
-                                        : const RegisterForm(),
+                                        ? LoginForm(func: openRegisterForm)
+                                        : RegisterForm(func: openLoginForm),
                                   ),
                                   Container(
                                       height: 80,

@@ -1,6 +1,7 @@
 class AppApis {
   static String API = "https://mybooksv.herokuapp.com";
   static String login_API = API + "/users/login";
+  static String register_API = API + "/users/register";
   static String notification_API = API + "/users/getnotify";
 
   static String getBook_API = API + "/books";

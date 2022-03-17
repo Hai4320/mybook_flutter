@@ -11,7 +11,8 @@ import '../../../resources/responsitory/user_repo.dart';
 import '../../themes/colors.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+  const LoginForm({Key? key, required this.func}) : super(key: key);
+  final VoidCallback func;
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -21,6 +22,7 @@ class _LoginFormState extends State<LoginForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final UserRepository userRepository = UserRepository();
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

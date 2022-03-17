@@ -13,11 +13,6 @@ class LoginFormChanged extends LoginEvent {
   const LoginFormChanged({required this.email,required this.password});
 }
 
-class LoginPasswordChanged extends LoginEvent {
-  final String password;
-
-  const LoginPasswordChanged({required this.password});
-}
 
 class LoginSubmited extends LoginEvent {
   final String email;
