@@ -11,6 +11,9 @@ class BookBloc extends Bloc<BookEvent, BookState>{
 
   BookBloc({required this.bookRepository}) : super(BookLoadingState()){
     on<FetchBookEvent>(_onFetchBookEvent);
+    on<ViewBookEvent>(_onViewBook);
+    on<LikeBookEvent>(_onLikeBook);
+    on<SaveBookEvent>(_onSaveBook);
   }
   void _onFetchBookEvent(event, Emitter<BookState> emit) async {
     emit(BookLoadingState());
@@ -24,5 +27,20 @@ class BookBloc extends Bloc<BookEvent, BookState>{
     }catch (error) {
       emit(BookFailureState(error: bookRepository.message));
     }
+  }
+  void _onViewBook(event, Emitter<BookState> emit) async {
+    emit(BookRefreshHistoryState(books: bookRepository.books));
+    await bookRepository.viewBookAction(event.bookID);
+    emit(BookSuccessState(books: bookRepository.books));
+  }
+  void _onLikeBook(event, Emitter<BookState> emit) async {
+    emit(BookRefreshHistoryState(books: bookRepository.books));
+    await bookRepository.likeBookAction(event.bookID, event.value);
+    emit(BookSuccessState(books: bookRepository.books));
+  }
+  void _onSaveBook(event, Emitter<BookState> emit) async {
+    emit(BookRefreshHistoryState(books: bookRepository.books));
+    await bookRepository.saveBookAction(event.bookID, event.value);
+    emit(BookSuccessState(books: bookRepository.books));
   }
 }

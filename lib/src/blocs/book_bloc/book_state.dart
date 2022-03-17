@@ -25,3 +25,7 @@ class BookFailureState extends BookState{
   @override
   List<Object> get props => [error];
 }
+
+class BookRefreshHistoryState extends BookSuccessState{
+  const BookRefreshHistoryState({required BookData books}) : super(books: books);
+}

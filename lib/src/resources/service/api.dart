@@ -7,7 +7,7 @@ class AppApis {
   static String getBookHistory_API = API + "/books/getBookHistorys";
   static String viewBook_API = API + "/books/view";
   static String likeBook_API = API + "/books/like";
-  static String saveBooks_API = API + "/books/save";
+  static String saveBook_API = API + "/books/save";
   
   static String getComments_API = API + "/comments/get";
   static String addComments_API = API + "/comments/add";
