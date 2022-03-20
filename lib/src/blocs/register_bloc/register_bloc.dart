@@ -36,8 +36,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         emit(RegisterErrorState(error: body["message"]));
       }
     } catch (error) {
-      print(error);
-      emit(RegisterErrorState(error: "Something went wrong"));
+      emit(const RegisterErrorState(error: "Something went wrong"));
     }
   }
 
