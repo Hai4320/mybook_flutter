@@ -100,7 +100,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             hintText: "Enter Email Address",
                             enabled: state is! RegisterLoadingState,
                             labelText: "Email",
-                            border: OutlineInputBorder()),
+                            border: const OutlineInputBorder()),
                       )),
                   Container(
                       margin: const EdgeInsets.only(top: 20),
@@ -115,7 +115,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             hintText: "Enter User Name",
                             labelText: "User Name",
                             enabled: state is! RegisterLoadingState,
-                            border: OutlineInputBorder()),
+                            border: const OutlineInputBorder()),
                       )),
                   Container(
                       margin: const EdgeInsets.only(top: 20),
@@ -131,7 +131,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             hintText: "Enter Password",
                             labelText: "Password",
                             enabled: state is! RegisterLoadingState,
-                            border: OutlineInputBorder()),
+                            border: const OutlineInputBorder()),
                       )),
                   Container(
                       margin: const EdgeInsets.only(top: 20),
@@ -147,7 +147,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             hintText: "Confirm Password",
                             labelText: "Confirm Password",
                             enabled: state is! RegisterLoadingState,
-                            border: OutlineInputBorder()),
+                            border: const OutlineInputBorder()),
                       )),
                   Container(
                     margin: const EdgeInsets.only(top: 20),

@@ -151,7 +151,7 @@ class BuildBookItem extends StatelessWidget {
                         ],
                       ),
                     )),
-                Container(
+                SizedBox(
                     width: 55,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,

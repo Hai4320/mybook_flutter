@@ -170,7 +170,7 @@ class _UserEditPageState extends State<UserEditPage> {
                                   oldPassword: _oldPasswordController.text));
                             }
                           : null,
-                      child: Text("SUMMIT")),
+                      child: const Text("SUMMIT")),
                 )
               ]),
             );

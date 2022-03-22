@@ -15,7 +15,7 @@ class _SettingPageState extends State<SettingPage> {
    return Scaffold(
       appBar: TransparentAppBar("Setting",AppColors.primary),
       extendBodyBehindAppBar: true,
-      body: Center(
+      body: const Center(
         child: Text("Setting"),
       )
     );

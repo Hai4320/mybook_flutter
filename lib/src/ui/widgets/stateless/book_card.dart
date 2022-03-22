@@ -3,6 +3,7 @@ import 'package:mybook_flutter/src/constants/assets.dart';
 import 'package:mybook_flutter/src/models/book_model.dart';
 import 'package:mybook_flutter/src/ui/pages/book_detail_page.dart';
 
+// ignore: must_be_immutable
 class BookCard extends StatelessWidget {
   BookCard({Key? key, required this.item}) : super(key: key);
   BookModel item;
