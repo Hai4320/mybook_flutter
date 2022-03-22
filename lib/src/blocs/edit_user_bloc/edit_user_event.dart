@@ -31,14 +31,9 @@ class EditUserSummitEvent extends EditUserEvent {
   final String name;
   final String newPassword;
   final String oldPassword;
-  final bool isChangePassword;
-  final bool isChangeAvatar;
-  final String avatar;
   const EditUserSummitEvent(
       {required this.name,
       required this.newPassword,
       required this.oldPassword,
-      required this.isChangePassword,
-      required this.isChangeAvatar,
-      required this.avatar});
+      });
 }

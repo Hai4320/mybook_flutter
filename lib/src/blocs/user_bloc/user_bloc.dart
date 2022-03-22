@@ -12,15 +12,20 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc({required this.user}) : super(UserState(user: user, tab: 0)) {
     on<UserInitEvent>(_onUserInitEvent);
     on<UserChangeTabEvent>(_onUserChangeTabEvent);
+    on<UserUpdateData>(_onUserUpdateEvent);
   }
   void _onUserInitEvent(event, Emitter<UserState> emit) async{
     UserModel userLoad = await event.userRepository.getUserData();
-    await userLoad.getAvatarUrl();
     user = userLoad;
     emit(UserState(user: user, tab: tab));
   }
   void _onUserChangeTabEvent(event, Emitter<UserState> emit) async{
     tab = event.tab;
+    emit(UserState(user: user, tab: tab));
+  }
+   void _onUserUpdateEvent(event, Emitter<UserState> emit) async{
+    user = event.user;
+    await user.getAvatarUrl();
     emit(UserState(user: user, tab: tab));
   }
 }

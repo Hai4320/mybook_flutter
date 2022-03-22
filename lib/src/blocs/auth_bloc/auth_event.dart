@@ -24,3 +24,7 @@ class LoggedIn extends AuthEvent {
 }
 
 class LoggedOut extends AuthEvent {}
+class ReloadUser extends AuthEvent {
+  final UserModel user;
+  const ReloadUser(this.user);
+}

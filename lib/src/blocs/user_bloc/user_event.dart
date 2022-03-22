@@ -12,7 +12,10 @@ class UserInitEvent extends UserEvent {
   @override
   List<Object> get props => [userRepository];
 }
-
+class UserUpdateData extends UserEvent{
+  final UserModel user;
+  const UserUpdateData(this.user);
+}
 class UserChangeTabEvent extends UserEvent{
   final int tab;
   const UserChangeTabEvent({required this.tab});

@@ -15,6 +15,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AppStarted>(_onAppStarted);
     on<LoggedIn>(_onLoggedIn);
     on<LoggedOut>(_onLoggedOut);
+    on<ReloadUser>(_onReloadUser);
   }
 
   void _onAppStarted(event, Emitter<AuthState> emit) async {
@@ -38,5 +39,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     await userRepository.deleteLoginData();
     emit(AuthUnauthenticated());
+  }
+   void _onReloadUser(event, Emitter<AuthState> emit) async {
+    emit(AuthUpdating(event.user));
+    await userRepository.updateUserData(event.user);
+    emit(AuthAuthenticated());
   }
 }

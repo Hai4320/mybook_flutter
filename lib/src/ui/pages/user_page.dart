@@ -31,6 +31,9 @@ class _UserPageState extends State<UserPage> {
           Navigator.pushNamedAndRemoveUntil(
               context, "/login", (route) => false);
         }
+        if (state is AuthUpdating){
+          userState.add(UserUpdateData(state.user));
+        }
       },
       child: Container(
         color: AppColors.secondary,

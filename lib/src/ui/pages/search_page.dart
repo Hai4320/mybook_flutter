@@ -38,7 +38,7 @@ class _SearchPageState extends State<SearchPage> {
                       child: const PageTitle(color: Colors.white, title: "Seach Page"),
                   ))
                 : Positioned(
-                    bottom: 20,
+                    top: 190,
                     child: PhloxAnimations(
                       duration: const Duration(milliseconds: 500),
                       fromOpacity: 0,

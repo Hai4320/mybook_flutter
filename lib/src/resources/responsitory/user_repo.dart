@@ -76,6 +76,14 @@ class UserRepository{
     await prefs.setString("userAvatar", user.avatar);
     await prefs.setString("userRole", user.role);
   }
+  Future<void> updateUserData(UserModel user) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString("userID", user.id);
+    await prefs.setString("userName", user.name);
+    await prefs.setString("userEmail", user.email);
+    await prefs.setString("userAvatar", user.avatar);
+    await prefs.setString("userRole", user.role);
+  }
   Future<void> deleteLoginData() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool("isLogined", false);
